@@ -12,9 +12,10 @@ class BugReportAdmin(admin.ModelAdmin):
     search_fields = ('title', 'description')
     fieldsets = (
         (None, {
-            'fields': ('title', 'description', 'project')
+            'fields': ('title','description','project','task','priority')
         }),
     )
+    list_editable = ('status', 'priority')
 
 
 @admin.register(FeatureRequest)
@@ -24,9 +25,10 @@ class FeatureRequestAdmin(admin.ModelAdmin):
     search_fields = ('title', 'description')
     fieldsets = (
         (None, {
-            'fields': ('title', 'description', 'project')
+            'fields': ('title','description','project','task','priority')
         }),
     )
+    list_editable = ('status', 'priority')
     
 
 

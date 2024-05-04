@@ -3,11 +3,6 @@ from tasks.models import Project, Task
 
 # Create your models here.
 
-# STATUS_CHOICES = {
-#     "e": "edit",
-#     "f": "fixed"
-# } 
-
 class BugReport(models.Model):
     STATUS_CHOICES = [
         ('New','Новая'),
@@ -15,11 +10,9 @@ class BugReport(models.Model):
         ('Completed','Завершена')
         ]
     PRIORITY_CHOICES = [
-        '5',
-        '4',
-        '3',
-        '2',
-        '1'
+        ('3', 'Hard'),
+        ('2','Medium'),
+        ('1','Light')
     ]
     title = models.CharField(max_length=50)
     description = models.TextField()
@@ -32,14 +25,18 @@ class BugReport(models.Model):
         Task,
         related_name='task_as_bugreport',
         on_delete=models.SET_NULL,
-        null =True
+        null = True
     )
     status = models.CharField(
         max_length=50,
         choices=STATUS_CHOICES,
         default='New',
     )    
-    priority = PRIORITY_CHOICES
+    priority = models.CharField(
+        max_length=50,
+        choices=PRIORITY_CHOICES,
+        default='1'
+    )
     created_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
 
@@ -52,11 +49,9 @@ class FeatureRequest(models.Model):
         ('Rejected','Отклонено')
     ]
     PRIORITY_CHOICES = [
-            '5',
-            '4',
-            '3',
-            '2',
-            '1'
+        ('3', 'Hard'),
+        ('2','Medium'),
+        ('1','Light')
     ]
     title = models.CharField(max_length=50)
     description = models.TextField()
@@ -76,6 +71,10 @@ class FeatureRequest(models.Model):
         choices=STATUS_CHOICES,
         default='New',
     )    
-    priority = PRIORITY_CHOICES
+    priority = models.CharField(
+        max_length=50,
+        choices=PRIORITY_CHOICES,
+        default='1'
+    )    
     created_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
