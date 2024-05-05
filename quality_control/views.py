@@ -6,7 +6,31 @@ from django.shortcuts import get_object_or_404
 from django.views.generic import ListView
 from django.views.generic import DetailView
 from django.template.loader import render_to_string
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from .forms import BugReportForm, FeatureRequestForm
+
+def create_featurerequest(request):
+    if request.method == 'POST':
+        form = FeatureRequestForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('quality_control:feature_list')
+    else:
+        form = FeatureRequestForm()
+    return render(request, 'quality_control/feature_request_form.html', {'form': form})
+
+
+def create_bugreport(request):
+    if request.method == 'POST':
+        form = BugReportForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('quality_control:bug_list')
+    else:
+        form = BugReportForm()
+    return render(request, 'quality_control/bug_report_form.html', {'form': form})
+
+
 
 
 

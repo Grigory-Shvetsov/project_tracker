@@ -9,6 +9,8 @@ urlpatterns = [
     path('features/', views.feature_list, name='feature_list'), 
     path('bugs/<int:bug_id>/',views.bug_detail, name = 'bug_detail'),
     path('features/<int:feature_id>/',views.feature_id_detail, name = 'feature_id_detail'),
+    path('bugs/create_bugreport/', views.create_bugreport, name='create_bugreport'),
+    path('features/create_featurerequest/', views.create_featurerequest, name='create_featurerequest'),
 
 
     # path('',views.IndexView.as_view(), name = "index"),
