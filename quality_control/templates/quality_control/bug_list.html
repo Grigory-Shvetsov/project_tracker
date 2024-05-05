@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список багов</title>
+</head>
+<body>
+    <h1>Список багов</h1>
+    <ul>
+        {% for bug in bug_list %}
+            <li><a href = "{% url 'quality_control:bug_detail' bug.id %}">{{ bug.title }}</a>, <a>{{ bug.status }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+
+

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список запросов на улучшение</title>
+</head>
+<body>
+    <h1>Список запросов на улучшение</h1>
+    <ul>
+        {% for feature in feature_list %}
+            <li><a href = "{% url 'quality_control:feature_id_detail' feature.id %}">{{ feature.title }}</a>, <a>{{ feature.status }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+
+
