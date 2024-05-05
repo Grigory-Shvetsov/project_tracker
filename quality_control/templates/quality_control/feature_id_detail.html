@@ -1,4 +1,12 @@
-<!DOCTYPE html>
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <h2>Детали улучшения {{ feature_id }}:</h2>
+    <a>Описание: {{ feature.description }}</a>
+{% endblock %}
+
+
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,4 +16,4 @@
     <h2>Детали улучшения {{ feature_id }}:</h2>
     <a>Описание: {{ feature.description }}</a>
 </body>
-</html>
+</html> -->

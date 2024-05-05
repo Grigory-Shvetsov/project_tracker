@@ -1,4 +1,15 @@
-<!DOCTYPE html>
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <h1>Список запросов на улучшение</h1>
+    <ul>
+        {% for feature in feature_list %}
+            <li><a href = "{% url 'quality_control:feature_id_detail' feature.id %}">{{ feature.title }}</a>, <a>{{ feature.status }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,6 +23,6 @@
         {% endfor %}
     </ul>
 </body>
-</html>
+</html> -->
 
 
