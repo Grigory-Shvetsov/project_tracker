@@ -1,8 +1,14 @@
 {% extends 'base/base.html' %}
 
 {% block content %}
+     <!-- Ссылка для изменения проекта -->
     <h2>Детали бага {{ bug_id }}:</h2>
-    <a>Описание: {{ bug.description }}</a>
+    <p><a href="{% url 'quality_control:update_bugreport' bug.id %}">Изменить баг</a></p>
+    <p><a href="{% url 'quality_control:delete_bug' bug.id %}"onclick="return confirm('Вы уверены, что хотите удалить этот баг?');">Удалить баг</a></p>
+    <p>Описание: {{ bug.description }}</p>
+    <p>Статус: {{ bug.status }}</p>
+    <p>Задача: {{ bug.task }}</p>
+
 {% endblock %}
 
 <!-- <!DOCTYPE html>

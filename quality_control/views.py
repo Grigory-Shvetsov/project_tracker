@@ -8,7 +8,44 @@ from django.views.generic import DetailView
 from django.template.loader import render_to_string
 from django.shortcuts import render, redirect
 from .forms import BugReportForm, FeatureRequestForm
+from django.views.generic import CreateView
+from django.urls import reverse, reverse_lazy
 
+# удаление
+def delete_bug(request, bug_id):
+    bug = get_object_or_404(BugReport, pk=bug_id)
+    bug.delete()
+    return redirect('quality_control:bug_list')
+
+def delete_feature(request, feature_id):
+    feature = get_object_or_404(FeatureRequest, pk=feature_id)
+    feature.delete()
+    return redirect('quality_control:feature_list')
+
+# обновление
+def update_featurerequest(request, feature_id):
+    feature = get_object_or_404(FeatureRequest, pk=feature_id)
+    if request.method == 'POST':
+        form = FeatureRequestForm(request.POST, instance=feature)
+        if form.is_valid():
+            form.save()
+            return redirect('quality_control:feature_id_detail', feature_id=feature.id)
+    else:
+        form = FeatureRequestForm(instance=feature)
+    return render(request, 'quality_control/feature_update.html', {'form': form, 'feature': feature})
+
+def update_bugreport(request, bug_id):
+    bug = get_object_or_404(BugReport, pk=bug_id)
+    if request.method == 'POST':
+        form = BugReportForm(request.POST, instance=bug)
+        if form.is_valid():
+            form.save()
+            return redirect('quality_control:bug_detail', bug_id=bug.id)
+    else:
+        form = BugReportForm(instance=bug)
+    return render(request, 'quality_control/bug_update.html', {'form': form, 'bug': bug})
+
+# создание
 def create_featurerequest(request):
     if request.method == 'POST':
         form = FeatureRequestForm(request.POST)

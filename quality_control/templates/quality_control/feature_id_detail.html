@@ -2,7 +2,11 @@
 
 {% block content %}
     <h2>Детали улучшения {{ feature_id }}:</h2>
-    <a>Описание: {{ feature.description }}</a>
+    <p><a href="{% url 'quality_control:update_featurerequest' feature.id %}">Изменить запрос на улучшение</a></p>
+    <p><a href="{% url 'quality_control:delete_feature' feature.id %}"onclick="return confirm('Вы уверены, что хотите удалить этот запрос на улучшение?');">Удалить запрос на улучшение</a></p>
+    <p>Описание: {{ feature.description }}</p>
+    <p>Статус: {{ feature.status }}</p>
+    <p>Задача: {{ feature.task }}</p>
 {% endblock %}
 
 
